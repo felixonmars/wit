@@ -64,3 +64,31 @@ You can always check out remote branches by specifying the remote as well
 ----
 wit update-pkg <package>::<remote>/<branch>
 ----
+
+
+== Viewing dependency graph visually
+
+Wit comes with two ways of visualizing the dependency graph,
+one that can be printed directly on the terminal in ASCII format and one that can be rendered as an SVG image.
+
+To print out the dependency on the command line, run:
+
+[source,shell]
+----
+$ wit inspect --tree
+api-scala-sifive::4fd0852
+└─wit::298410a0
+----
+
+Wit can also generate a https://en.wikipedia.org/wiki/DOT_(graph_description_language)[DOT] file,
+which can be then rendered into an image with a number of different tools,
+https://graphviz.org/[Graphviz] being one of the most prominent.
+
+If you have Graphviz installed, then the following commands will produce an SVG image of the Wit dependency graph:
+
+[source,shell]
+----
+wit inspect --dot | dot -Tsvg > graph.svg
+----
+
+This SVG file can be directly viewed in most web browsers.
